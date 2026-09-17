@@ -22,4 +22,9 @@ public class StorageProject : IStorageProject
     {
         return await _connection.GetConnectionObject().QueryFirstOrDefaultAsync<Project>($"SELECT * FROM Projects WHERE ID = {projectId}");
     }
+
+    public async Task<int> GetProductCount()
+    {
+        return await _connection.GetConnectionObject().QueryFirstOrDefaultAsync<int>("SELECT COUNT(*) FROM Products;");
+    }
 }
