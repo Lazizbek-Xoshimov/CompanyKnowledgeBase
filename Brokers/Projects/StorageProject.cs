@@ -25,6 +25,6 @@ public class StorageProject : IStorageProject
 
     public async Task<int> GetProductCount()
     {
-        return await _connection.GetConnectionObject().QueryFirstOrDefaultAsync<int>("SELECT COUNT(*) FROM Products;");
+        return await _connection.GetConnectionObject().QueryFirstOrDefaultAsync<int>("SELECT COUNT(*) FROM Projects;");
     }
 }
