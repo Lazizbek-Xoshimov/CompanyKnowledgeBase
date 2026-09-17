@@ -13,11 +13,11 @@ public class StorageUser : IStorageUser
         _connection = new DbConnection();
     }
 
-    public async Task<IEnumerable<User>> SelectAllProductAsync()
+    public async Task<IEnumerable<User>> SelectAllUserAsync()
     {
         return await _connection.GetConnectionObject().QueryAsync<User>("SELECT * FROM Users;");
     }
-    public async Task<User> SelectProductById(int id)
+    public async Task<User> SelectUserById(int id)
     {
         return await _connection.GetConnectionObject().QueryFirstOrDefaultAsync<User>($"SELECT * FROM Users WHERE Id = {id}");
     }
