@@ -1,5 +1,6 @@
 using Brokers.Users;
 using Models;
+using Services.Exceptions;
 
 namespace Services.Users;
 
@@ -17,7 +18,7 @@ public class UserService : IUserService
         var users = await storageUser.SelectAllUserAsync();
 
         if (users.Count().Equals(0))
-            throw new Exception("User is not found.");
+            throw new NotFoundException($"The Users table is empty.", "");
 
         return users;
     }
@@ -27,7 +28,7 @@ public class UserService : IUserService
         var user = await storageUser.SelectUserById(userId);
 
         if (user is null)
-            throw new Exception("User is not found.");
+            throw new NotFoundException($"{userId} user was not found.", "Use a different Id");
 
         return user;
     }

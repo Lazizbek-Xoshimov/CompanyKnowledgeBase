@@ -1,5 +1,6 @@
 using Brokers.Projects;
 using Models;
+using Services.Exceptions;
 
 namespace Services.Projects;
 
@@ -17,9 +18,9 @@ public class ProjectService : IProjectService
         var products = await storageProject.SelectAllProductAsync();
 
         if (products.Count().Equals(0))
-            throw new Exception("Not found!");
+            throw new NotFoundException($"The Projects table is empty.", "");
         
-        return products;
+        return products;    
     }
 
     public async Task<Project> RetriveProjectById(int id)
@@ -27,12 +28,12 @@ public class ProjectService : IProjectService
         var productCount = await storageProject.GetProductCount();
 
         if (id > productCount)
-            throw new Exception("Not found!");
+            throw new NotFoundException($"{id} project was not found.", "Use a different Id");
 
         var product = await storageProject.SelectProductById(id);
 
         if (product is null)
-            throw new Exception("Not found!");
+            throw new NotFoundException($"{id} project was not found.", "Use a different Id");
         
         return product;
     }
