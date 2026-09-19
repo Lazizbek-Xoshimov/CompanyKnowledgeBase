@@ -1,5 +1,5 @@
 ﻿using Menus;
-using Services.Exceptions;
+using Models.Exceptions;
 
 namespace CompanyKnowledgeBase;
 

@@ -1,4 +1,4 @@
-namespace Services.Exceptions;
+namespace Models.Exceptions;
 
 public class ValidationException : Exception
 {

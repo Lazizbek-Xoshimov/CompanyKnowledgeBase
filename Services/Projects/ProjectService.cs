@@ -1,26 +1,21 @@
-using Brokers.Projects;
+using Brokers;
 using Models;
-using Services.Exceptions;
+using Models.Exceptions;
 
 namespace Services.Projects;
 
 public class ProjectService : IProjectService
 {
-    private readonly IStorageProject storageProject;
+    private readonly IStorageBroker storageProject;
 
     public ProjectService()
     {
-        storageProject = new StorageProject();
+        storageProject = new StorageBroker();
     }
 
     public async Task<IEnumerable<Project>> RetriveAllProjectAsync()
     {
-        var products = await storageProject.SelectAllProductAsync();
-
-        if (products.Count().Equals(0))
-            throw new NotFoundException($"The Projects table is empty.", "");
-        
-        return products;    
+        return await storageProject.SelectAllProductAsync();  
     }
 
     public async Task<Project> RetriveProjectById(int id)

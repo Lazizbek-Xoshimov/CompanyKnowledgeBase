@@ -1,8 +1,8 @@
 using Models;
 
-namespace Brokers.Projects;
+namespace Brokers;
 
-public interface IStorageProject
+public partial interface IStorageBroker
 {
     public Task<IEnumerable<Project>> SelectAllProductAsync();
     public Task<Project> SelectProductById(int projectId);

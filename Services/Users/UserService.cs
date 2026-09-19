@@ -1,26 +1,21 @@
-using Brokers.Users;
+using Brokers;
 using Models;
-using Services.Exceptions;
+using Models.Exceptions;
 
 namespace Services.Users;
 
 public class UserService : IUserService
 {
-    public readonly IStorageUser storageUser;
+    public readonly IStorageBroker storageUser;
 
     public UserService()
     {
-        storageUser = new StorageUser();
+        storageUser = new StorageBroker();
     }
 
     public async Task<IEnumerable<User>> RetriveAllUserAsync()
     {
-        var users = await storageUser.SelectAllUserAsync();
-
-        if (users.Count().Equals(0))
-            throw new NotFoundException($"The Users table is empty.", "");
-
-        return users;
+        return await storageUser.SelectAllUserAsync();
     }
 
     public async Task<User> RetriveUserById(int userId)
