@@ -56,4 +56,39 @@ public class ProjectMenu
 
         Console.WriteLine($"{product.Id}, {product.Name}, {product.Description}, {product.CreatedDate}, {product.UpdatedDate}");
     }
+
+    public async Task UpdateProjectMenuAsync()
+    {
+        Project project = new Project();
+
+        Console.Write("Project Id = ");
+        project.Id = Convert.ToInt32(Console.ReadLine());
+
+        Console.Write("Project Name = ");
+        project.Name = Console.ReadLine();
+        
+        Console.Write("Description = ");
+        project.Description = Console.ReadLine();
+
+        Console.Write("Created User Id of Project = ");
+        project.CreatedByUserId = Convert.ToInt32(Console.ReadLine());
+        
+        project.UpdatedDate = DateTime.Now;
+
+        var isUpdated = await projectService.UpdateProjectAsync(project);
+
+        if (isUpdated)
+            Console.WriteLine("Project updated.");
+    }
+
+    public async Task DeleteProjectMenuAsync()
+    {
+        Console.Write("Project ning Id sini kiriting: ");
+        int id = Convert.ToInt32(Console.ReadLine());
+
+        var isDeleted = await projectService.DeleteProjectAsync(id);
+
+        if (isDeleted)
+            Console.WriteLine("Project deleted.");
+    }
 }

@@ -10,8 +10,10 @@ public class Program
 
     public static async Task Main(string[] args)
     {
-        int input = SelectWithArrow("Barcha project larni ko'rish", "Id orqali project qidirish", "Yangi project qo'shish",
-                        "Barcha user larni ko'rish", "Id orqali user qidirish");
+        int input = SelectWithArrow("Barcha project larni ko'rish", "Id orqali project qidirish", 
+                                    "Yangi project qo'shish", "Mavjud project ni yangilash", "Mavjud project ni o'chirish",
+                                    "Barcha user larni ko'rish", "Id orqali user qidirish",
+                                    "Yangi user qo'shish", "Mavjud user ni yangilash", "Mavjud user ni o'chirish");
 
         try
         {
@@ -20,8 +22,13 @@ public class Program
                 case 1: await projectMenu.ShowAllProjectAsync(); break;
                 case 2: await projectMenu.ShowProjectByIdAsync(); break;
                 case 3: await projectMenu.AddProjectAsync(); break;
-                case 4: await userMenu.ShowAllUserAsync(); break;
-                case 5: await userMenu.ShowUserByIdAsync(); break;
+                case 4: await projectMenu.UpdateProjectMenuAsync(); break;
+                case 5: await projectMenu.DeleteProjectMenuAsync(); break;
+                case 6: await userMenu.ShowAllUserAsync(); break;
+                case 7: await userMenu.ShowUserByIdAsync(); break;
+                case 8: await userMenu.AddUserAsync(); break;
+                case 9: await userMenu.UpdateUserMenuAsync(); break;
+                case 10: await userMenu.DeleteUserMenuAsync(); break;
 
                 default: Console.WriteLine("Noto'g'ri tanlov kiritildi"); break;
             }

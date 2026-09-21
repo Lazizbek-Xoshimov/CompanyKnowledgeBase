@@ -18,7 +18,7 @@ public class ProjectService : IProjectService
         var projects = await RetriveAllProjectAsync();
 
         if (projects.Select(p => p.Id).Contains(project.Id))
-            throw new ValidationException($"{project.Id} user is exsits.", "Use another user Id.");
+            throw new ValidationException($"{project.Id} project is exsits.", "Use another project Id.");
 
         return await storageProject.InsertProjectAsync(project);
     }
@@ -43,13 +43,23 @@ public class ProjectService : IProjectService
         return product;
     }
 
-    public Task<bool> UpdateProjectAsync(Project project)
+    public async Task<bool> UpdateProjectAsync(Project project)
     {
-        throw new NotImplementedException();
+        var projects = await storageProject.SelectAllProjectAsync();
+
+        if (!projects.Select(p => p.Id).Contains(project.Id))
+            throw new NotFoundException($"{project.Id} project is not exsits.", "Use another project Id.");
+
+        return await storageProject.UpdateProjectAsync(project);
     }
 
-    public Task<bool> DeleteProjectAsync(int projectId)
+    public async Task<bool> DeleteProjectAsync(int projectId)
     {
-        throw new NotImplementedException();
+        var projects = await storageProject.SelectAllProjectAsync();
+
+        if (!projects.Select(p => p.Id).Contains(projectId))
+            throw new NotFoundException($"{projectId} project is exsits.", "Use another project Id.");
+
+        return await storageProject.DeleteProjectAsync(projectId);
     }
 }
