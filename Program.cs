@@ -10,8 +10,8 @@ public class Program
 
     public static async Task Main(string[] args)
     {
-        int input = SelectWithArrow("1. Barcha project larni ko'rish", "2. Id orqali project qidirish",
-                        "3. Barcha user larni ko'rish", "4. Id orqali user qidirish");
+        int input = SelectWithArrow("Barcha project larni ko'rish", "Id orqali project qidirish", "Yangi project qo'shish",
+                        "Barcha user larni ko'rish", "Id orqali user qidirish");
 
         try
         {
@@ -19,8 +19,9 @@ public class Program
             {
                 case 1: await projectMenu.ShowAllProjectAsync(); break;
                 case 2: await projectMenu.ShowProjectByIdAsync(); break;
-                case 3: await userMenu.ShowAllUserAsync(); break;
-                case 4: await userMenu.ShowUserByIdAsync(); break;
+                case 3: await projectMenu.AddProjectAsync(); break;
+                case 4: await userMenu.ShowAllUserAsync(); break;
+                case 5: await userMenu.ShowUserByIdAsync(); break;
 
                 default: Console.WriteLine("Noto'g'ri tanlov kiritildi"); break;
             }

@@ -1,3 +1,4 @@
+using Models;
 using Services.Projects;
 
 namespace Menus;
@@ -9,6 +10,31 @@ public class ProjectMenu
     public ProjectMenu()
     {
         projectService = new ProjectService();
+    }
+
+    public async Task AddProjectAsync()
+    {
+        Project project = new Project();
+
+        Console.Write("Project Id = ");
+        project.Id = Convert.ToInt32(Console.ReadLine());
+
+        Console.Write("Project Name = ");
+        project.Name = Console.ReadLine();
+        
+        Console.Write("Description = ");
+        project.Description = Console.ReadLine();
+
+        Console.Write("Created User Id of Project = ");
+        project.CreatedByUserId = Convert.ToInt32(Console.ReadLine());
+        
+        project.CreatedDate = DateTime.Now;
+        project.UpdatedDate = DateTime.Now;
+
+        var isAdded = await projectService.AddProjectAsync(project);
+
+        if (isAdded)
+            Console.WriteLine("Project added.");
     }
 
     public async Task ShowAllProjectAsync()

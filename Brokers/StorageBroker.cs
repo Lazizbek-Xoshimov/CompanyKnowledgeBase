@@ -10,7 +10,7 @@ public partial class StorageBroker : IStorageBroker
 
     public StorageBroker()
     {
-        _connection = "Server=(localdb)\\MSSQLLocalDB;Database=Company Knowledge Base;Trusted_Connection=True;TrustServerCertificate=True;";
+        _connection = "Server=Axion\\MSSQLSERVER01;Database=CompanyKnowledgeBaseDB;Trusted_Connection=True;TrustServerCertificate=True;";
         dbConnection = new SqlConnection(_connection);
     }
 }

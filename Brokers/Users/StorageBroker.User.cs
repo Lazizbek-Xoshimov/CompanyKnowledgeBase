@@ -7,10 +7,12 @@ public partial class StorageBroker : IStorageBroker
 {
     public async Task<IEnumerable<User>> SelectAllUserAsync()
     {
-        return await dbConnection.QueryAsync<User>("SELECT * FROM Users;");
+        var querySelectAll = "SELECT * FROM Users;";
+        return await dbConnection.QueryAsync<User>(querySelectAll);
     }
     public async Task<User> SelectUserById(int id)
     {
-        return await dbConnection.QueryFirstOrDefaultAsync<User>($"SELECT * FROM Users WHERE Id = {id}");
+        var querySelectById = "SELECT * FROM Users WHERE Id = @id";
+        return await dbConnection.QueryFirstOrDefaultAsync<User>(querySelectById, new { id });
     }
 }
