@@ -5,12 +5,10 @@ namespace Brokers;
 
 public partial class StorageBroker : IStorageBroker
 {
-    private readonly string _connection;
-    private readonly IDbConnection dbConnection;
+    private readonly string _connectionString;
 
     public StorageBroker()
     {
-        _connection = "Server=(localdb)\\MSSQLLocalDB;Database=Company Knowledge Base;Trusted_Connection=True;TrustServerCertificate=True;";
-        dbConnection = new SqlConnection(_connection);
+        _connectionString = "Server=(localdb)\\MSSQLLocalDB;Database=CompanyKnowledgeBaseDB;Trusted_Connection=True;TrustServerCertificate=True;";
     }
 }

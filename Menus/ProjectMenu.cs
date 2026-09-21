@@ -41,10 +41,7 @@ public class ProjectMenu
     {
         var products = await projectService.RetriveAllProjectAsync();
 
-        foreach (var product in products)
-        {
-            Console.WriteLine($"{product.Id}, {product.Name}");
-        }
+        TablePrinter.Print(products);
     }
 
     public async Task ShowProjectByIdAsync()
@@ -54,7 +51,7 @@ public class ProjectMenu
 
         var product = await projectService.RetriveProjectById(id);
 
-        Console.WriteLine($"{product.Id}, {product.Name}, {product.Description}, {product.CreatedDate}, {product.UpdatedDate}");
+        TablePrinter.Print(product);
     }
 
     public async Task UpdateProjectMenuAsync()

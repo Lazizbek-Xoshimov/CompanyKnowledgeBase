@@ -30,7 +30,8 @@ public class UserMenu
         user.Email = Console.ReadLine();
         
         Console.Write("User Role = ");
-        user.UserRole = Enum.Parse<UserRole>(Console.ReadLine());
+        Enum.TryParse<UserRole>(Console.ReadLine(), ignoreCase: true, out var role);
+        user.UserRole = role;
 
         Console.Write("User Password = ");
         user.PasswordHash = Console.ReadLine();
@@ -48,10 +49,7 @@ public class UserMenu
     {
         var users = await userService.RetriveAllUserAsync();
 
-        foreach (var user in users)
-        {
-            Console.WriteLine($"{user.Id}, {user.FirstName}, {user.LastName}");
-        }
+        TablePrinter.Print(users);
     }
 
     public async Task ShowUserByIdAsync()
@@ -61,7 +59,7 @@ public class UserMenu
 
         var user = await userService.RetriveUserById(userId);
 
-        Console.WriteLine($"{user.Id}, {user.FirstName}, {user.LastName}, {user.Email}, {user.UserRole}, {user.PasswordHash}, {user.CreatedDate}, {user.UpdatedDate}");
+        TablePrinter.Print(user);
     }
 
     public async Task UpdateUserMenuAsync()
