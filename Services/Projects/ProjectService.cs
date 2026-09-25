@@ -1,5 +1,5 @@
 using Brokers;
-using Models;
+using Models.Projects;
 using Models.Exceptions;
 
 namespace Services.Projects;
@@ -30,11 +30,6 @@ public class ProjectService : IProjectService
 
     public async Task<Project> RetriveProjectById(int id)
     {
-        var productCount = await storageProject.GetProjectCount();
-
-        if (id > productCount)
-            throw new NotFoundException($"{id} project was not found.", "Use a different Id");
-
         var product = await storageProject.SelectProjectById(id);
 
         if (product is null)

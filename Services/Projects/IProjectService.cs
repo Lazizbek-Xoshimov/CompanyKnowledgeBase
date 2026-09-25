@@ -1,4 +1,4 @@
-using Models;
+using Models.Projects;
 
 namespace Services.Projects;
 

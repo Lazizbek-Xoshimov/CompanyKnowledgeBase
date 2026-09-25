@@ -1,6 +1,4 @@
-using Models.Enums;
-
-namespace Models;
+namespace Models.Users;
 
 public class User
 {

@@ -1,5 +1,4 @@
-using Models;
-using Models.Enums;
+using Models.Users;
 using Services.Users;
 
 namespace Menus;
@@ -36,8 +35,8 @@ public class UserMenu
         Console.Write("User Password = ");
         user.PasswordHash = Console.ReadLine();
         
-        user.CreatedDate = DateTime.Now;
-        user.UpdatedDate = DateTime.Now;
+        user.CreatedDate = DateTimeOffset.Now;
+        user.UpdatedDate = DateTimeOffset.Now;
 
         var isAdded = await userService.AddUserAsync(user);
 
@@ -84,7 +83,7 @@ public class UserMenu
         Console.Write("User Password = ");
         user.PasswordHash = Console.ReadLine();
         
-        user.UpdatedDate = DateTime.Now;
+        user.UpdatedDate = DateTimeOffset.Now;
 
         var isUpdated = await userService.UpdateUserAsync(user);
 

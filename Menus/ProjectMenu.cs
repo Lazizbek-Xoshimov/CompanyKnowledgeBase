@@ -1,4 +1,4 @@
-using Models;
+using Models.Projects;
 using Services.Projects;
 
 namespace Menus;
@@ -28,8 +28,8 @@ public class ProjectMenu
         Console.Write("Created User Id of Project = ");
         project.CreatedByUserId = Convert.ToInt32(Console.ReadLine());
         
-        project.CreatedDate = DateTime.Now;
-        project.UpdatedDate = DateTime.Now;
+        project.CreatedDate = DateTimeOffset.Now;
+        project.UpdatedDate = DateTimeOffset.Now;
 
         var isAdded = await projectService.AddProjectAsync(project);
 
@@ -70,7 +70,7 @@ public class ProjectMenu
         Console.Write("Created User Id of Project = ");
         project.CreatedByUserId = Convert.ToInt32(Console.ReadLine());
         
-        project.UpdatedDate = DateTime.Now;
+        project.UpdatedDate = DateTimeOffset.Now;
 
         var isUpdated = await projectService.UpdateProjectAsync(project);
 

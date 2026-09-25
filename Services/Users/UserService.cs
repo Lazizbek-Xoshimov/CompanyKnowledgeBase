@@ -1,5 +1,5 @@
 using Brokers;
-using Models;
+using Models.Users;
 using Models.Exceptions;
 
 namespace Services.Users;

@@ -1,4 +1,4 @@
-using Models;
+using Models.Users;
 using Dapper;
 using System.Data;
 using Microsoft.Data.SqlClient;
@@ -36,8 +36,8 @@ public partial class StorageBroker : IStorageBroker
     {
         using IDbConnection connection = new SqlConnection(_connectionString);
 
-        var queryUpdate = "UPDATE Users SET FirstName = @FirstName, LastName = @LastName, Email = @Email, UserRole = @UserRole, Password = @Password, CreatedDate = @CreatedDate, UpdatedDate = @UpdatedDate";
-        var executedRowCount = await connection.ExecuteAsync(queryUpdate, new { Name = user.FirstName, LastName = user.LastName, Email = user.Email, UserRole = user.UserRole, Password = user.PasswordHash, CreatedDate = user.CreatedDate, UpdatedDate = user.UpdatedDate });
+        var queryUpdate = "UPDATE Users SET FirstName = @FirstName, LastName = @LastName, Email = @Email, UserRole = @UserRole, Password = @Password, CreatedDate = @CreatedDate, UpdatedDate = @UpdatedDate WHERE Id = @Id";
+        var executedRowCount = await connection.ExecuteAsync(queryUpdate, new { Id = user.Id, FirstName = user.FirstName, LastName = user.LastName, Email = user.Email, UserRole = user.UserRole, Password = user.PasswordHash, CreatedDate = user.CreatedDate, UpdatedDate = user.UpdatedDate });
 
         return executedRowCount > 0;
     }

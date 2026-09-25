@@ -1,4 +1,6 @@
-namespace Models;
+using Models.Users;
+
+namespace Models.Projects;
 
 public class Project
 {

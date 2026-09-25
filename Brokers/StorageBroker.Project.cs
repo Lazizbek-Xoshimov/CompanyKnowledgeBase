@@ -1,7 +1,7 @@
 using System.Data;
 using Dapper;
 using Microsoft.Data.SqlClient;
-using Models;
+using Models.Projects;
 
 namespace Brokers;
 
@@ -45,8 +45,8 @@ public partial class StorageBroker : IStorageBroker
     {
         using IDbConnection connection = new SqlConnection(_connectionString);
 
-        var queryUpdate = "UPDATE Projects SET Name = @Name, Description = @Description, CreatedBy = @CreatedByUserId, CreatedDate = @CreatedDate, UpdatedDate = @UpdatedDate";
-        var executedRowCount = await connection.ExecuteAsync(queryUpdate, new { Name = project.Name, Description = project.Description, CreatedBy = project.CreatedByUserId, CreatedDate = project.CreatedDate, UpdatedDate = project.UpdatedDate });
+        var queryUpdate = "UPDATE Projects SET Name = @Name, Description = @Description, CreatedBy = @CreatedByUserId, CreatedDate = @CreatedDate, UpdatedDate = @UpdatedDate WHERE Id = @Id";
+        var executedRowCount = await connection.ExecuteAsync(queryUpdate, new { Id = project.Id, Name = project.Name, Description = project.Description, CreatedByUserId = project.CreatedByUserId, CreatedDate = project.CreatedDate, UpdatedDate = project.UpdatedDate });
 
         return executedRowCount > 0;
     }
